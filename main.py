@@ -26,7 +26,7 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     dt = 0
-
+    mode = ""
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -35,9 +35,9 @@ def main():
         updatable.update(dt)
 
         for asteroid in asteroids:
-            if asteroid.collides_with(player):
-                print("Game over!")
-                sys.exit()
+            if asteroid.collides_with(player) and mode != "god":
+                player.respawn()
+                #sys.exit()
             
             
             for shot in shots:
